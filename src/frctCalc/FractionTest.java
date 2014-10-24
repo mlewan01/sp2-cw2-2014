@@ -1,3 +1,5 @@
+package frctCalc;
+
 /**
  * Created by keith for the second coursework assignment.
  *
