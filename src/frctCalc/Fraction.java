@@ -94,7 +94,7 @@ public class Fraction {
     	int on = other.getNumerator();
     	int td = this.getDenominator();
     	int tn = this.getNumerator();
-    	if(od == td) return new Fraction(on-tn, od);
+    	if(od == td) return new Fraction(tn-on, od);
     	else {
     		int i = tn*od - on*td;
     		return new Fraction(i, td*od);
