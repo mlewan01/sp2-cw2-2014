@@ -22,11 +22,16 @@ public class TestFraction {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		
 		frac = new Fraction(num,den);
 		System.out.println("Creating Fraction: " + num + "  " + den);
 		System.out.println("Numerator: " + frac.getNumerator());
 		System.out.println("Denumerator: " + frac.getDenominator());
+	}
+	@Test
+	public void testDivide(){
+		Fraction n = new Fraction(3,2);
+		Fraction ne = frac.divide(n);
+		System.out.println("Dividing "+frac.toString()+" and "+n.toString()+" equals "+ne.toString());
 	}
 	@Test
 	public void testSubtract(){
@@ -56,7 +61,7 @@ public class TestFraction {
 	@Test
 	public void testToString(){
 		
-		frac.setDenominator(1);
+		//frac.setDenominator(1);
 		boolean b=true;
 		String s = frac.toString();
 		if(s.contains("/") && frac.getDenominator() != 1) b=false;

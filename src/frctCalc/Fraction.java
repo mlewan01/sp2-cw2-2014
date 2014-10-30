@@ -65,8 +65,16 @@ public class Fraction {
         int denom = this.getDenominator() * other.getDenominator();
         return new Fraction(num, denom);
     }
+    
+    public Fraction divide(Fraction other){
+    	int od = other.getDenominator();
+    	int on = other.getNumerator();
+    	int td = this.getDenominator();
+    	int tn = this.getNumerator();
+    	return new Fraction(tn*od, td*on);
+    }
+    
     public Fraction subtract(Fraction other){
-    	
     	int od = other.getDenominator();
     	int on = other.getNumerator();
     	int td = this.getDenominator();
