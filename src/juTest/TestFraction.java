@@ -29,10 +29,16 @@ public class TestFraction {
 		System.out.println("Denumerator: " + frac.getDenominator());
 	}
 	@Test
+	public void testSubtract(){
+		Fraction n = new Fraction(3,2);
+		Fraction ne = frac.subtract(n);
+		System.out.println("Subtructing: "+frac.toString()+" and "+n.toString() +" equals "+ne.toString());
+	}
+	@Test
 	public void testAdd(){
-		Fraction ne = frac.add(new Fraction(3,4));
-		System.out.println(ne.toString());
-		
+		Fraction n = new Fraction(3,2);
+		Fraction ne = frac.add(n);
+		System.out.println("Adding: "+frac.toString()+" and "+n.toString() +" equals "+ne.toString());
 	}
 	@Test
 	public void testMultiply(){
