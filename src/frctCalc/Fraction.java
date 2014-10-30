@@ -13,6 +13,7 @@ public class Fraction {
             return;
         }
         int gcd = myGcd(num, denom);
+        //System.out.println("CONSTRUCTOR GCDfunction: " + gcd);
         setNumerator(num / gcd);
         setDenominator(denom / gcd);
     }
@@ -67,10 +68,8 @@ public class Fraction {
     }
     
     public Fraction negate(){
-    	int tn = this.getNumerator();
+    	int tn = this.getNumerator()*(-1);
     	int td = this.getDenominator();
-    	tn=tn*(-1);
-    	td= td*(-1);
     	return new Fraction(tn, td);
     }
     

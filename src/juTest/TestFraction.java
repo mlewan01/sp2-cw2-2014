@@ -17,8 +17,8 @@ import frctCalc.Fraction;
 public class TestFraction {
 	
 	private static Fraction frac;
-	private static int num = -2;
-	private static int den = -4;
+	private static int num = 2;
+	private static int den = 4;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -30,7 +30,7 @@ public class TestFraction {
 	@Test
 	public void testNegate(){
 		Fraction f = frac.negate();
-		System.out.println("Absolute value from: "+frac.toString()+" equals: "+f.toString());
+		System.out.println("Negate value from: "+frac.toString()+" equals: "+f.toString());
 	}
 	@Test
 	public void testAbsVAlue(){
