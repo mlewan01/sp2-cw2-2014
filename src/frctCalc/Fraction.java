@@ -65,6 +65,18 @@ public class Fraction {
         int denom = this.getDenominator() * other.getDenominator();
         return new Fraction(num, denom);
     }
+    
+    public Fraction add(Fraction other){
+    	int od = other.getDenominator();
+    	int on = other.getNumerator();
+    	int td = this.getDenominator();
+    	int tn = this.getNumerator();
+    	if(od == td) return new Fraction(on+tn, od);
+    	else {
+    		int i = tn*od + on*td;
+    		return new Fraction(i, td*od);
+    	}
+    }
 
     private int myGcd(int a, int b) {
         while (b != 0) {
