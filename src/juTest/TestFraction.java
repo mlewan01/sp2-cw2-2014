@@ -30,6 +30,8 @@ public class TestFraction {
 	}
 	@Test
 	public void testAdd(){
+		Fraction ne = frac.add(new Fraction(3,4));
+		System.out.println(ne.toString());
 		
 	}
 	@Test
