@@ -66,6 +66,22 @@ public class Fraction {
         return new Fraction(num, denom);
     }
     
+    public Fraction negate(){
+    	int tn = this.getNumerator();
+    	int td = this.getDenominator();
+    	tn=tn*(-1);
+    	td= td*(-1);
+    	return new Fraction(tn, td);
+    }
+    
+    public Fraction absValue(){
+    	int tn = this.getNumerator();
+    	int td = this.getDenominator();
+    	if(tn<0) tn=tn*(-1);
+    	if(td<0) td= td*(-1);
+    	return new Fraction(tn, td);
+    }
+    
     public Fraction divide(Fraction other){
     	int od = other.getDenominator();
     	int on = other.getNumerator();
