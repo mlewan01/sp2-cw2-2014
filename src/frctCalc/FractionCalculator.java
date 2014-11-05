@@ -14,36 +14,57 @@ import java.util.regex.Pattern;
 public class FractionCalculator {
 	
 	private Fraction f;
-	String p1 = "[+-*/]";
-	String p2 = "\n";
-	String p3 = "\\d";
-	String p4 = "\\d/\\d";
-	String p5 = "[Qq]|quit|Quit";
 	
 	public FractionCalculator(){
-		Pattern p = Pattern.compile(p4);
+		
 		f = new Fraction(0,1);
 	}
 	
 	public static void main(String[] arg){
+		
+		String regAbs = "abs|ABS|Abs|a|A";  // absolute value 
+		String regNegate = "neg|NEG|Neg|n|N";  // negate the value
+		String regClear = "clear|CLEAR|Clear|c|C"; // clear
+		String regFraction = "(\\-)?\\d/(\\-)?\\d"; // fraction
+		String regDigit = "(\\s)?(\\-)?\\d(\\s)?"; // single digit
+		String regOperation = "\\s(\\+|\\-|\\*|/)\\s"; // operation
+		String regQuit = "quit|QUIT|Quit|q{1,1}|Q{1,1}";  // quit
+		
 		System.out.println("wellcome in Fraction calculator  \\o/\n");
 		System.out.println("please enter data in following format: \"3/4 + 1/-3 * 7 / 5\"");
 		System.out.println("you can enter data in multiple lines (provided you know how)!");
 		
-		boolean contin = true;
+		
 		String s="";
 		Scanner sc = new Scanner(System.in);
 		do{
 			System.out.println("Please, enter data to calculate Fraction: ");
 			
+			s = sc.next();
 			
-			s = sc.nextLine();
-			sc.hasNext();
+			if( s.matches(regQuit)){   // quit
+				System.out.println("found quit request");
+				break;
+			} else if(s.matches(regClear)){  // clear
+				System.out.println("requested  Clear ");
+			} else if(s.matches(regOperation)){  // operation
+				System.out.println("found Operation ");
+			} else if(s.matches(regAbs)){  // absolute value 
+				System.out.println("requested  ABS ");
+			}else if(s.matches(regNegate)){  // negate the value
+				System.out.println("requested  Negate ");
+			}else if(s.matches(regFraction)){  // fraction
+				System.out.println("found  Fraction");
+			}else if(s.matches(regDigit)){ // single digit
+				System.out.println("found a Digit");
+			}else {
+				System.out.print("found nothing from the regular Expressions:   ");
+				System.out.println(s);
+			}
 			
 			
-			
-			contin = !(s.contains("q") || s.contains("Q"));
-		}while(contin);
+		}while(sc.hasNext());
+		
 		sc.close();
 		System.out.println("main loop exited...");
 		
