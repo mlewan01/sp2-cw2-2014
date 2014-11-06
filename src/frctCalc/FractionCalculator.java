@@ -4,6 +4,7 @@
 package frctCalc;
 
 import java.util.Scanner;
+import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 /**
@@ -27,7 +28,7 @@ public class FractionCalculator {
 		String regClear = "clear|CLEAR|Clear|c|C"; // clear
 		String regFraction = "(\\-)?\\d/(\\-)?\\d"; // fraction
 		String regDigit = "(\\s)?(\\-)?\\d(\\s)?"; // single digit
-		String regOperation = "\\s(\\+|\\-|\\*|/)\\s"; // operation
+		String regOperation = "(\\s)?(\\+|\\-|\\*|/)(\\s)?"; // operation
 		String regQuit = "quit|QUIT|Quit|q{1,1}|Q{1,1}";  // quit
 		
 		System.out.println("wellcome in Fraction calculator  \\o/\n");
@@ -70,9 +71,42 @@ public class FractionCalculator {
 		
 	}	
 	
-	public Fraction evaluate(Fraction fr, String s){
-		System.out.println("the string is: "+s);
-		// to do !!!!
+	public Fraction evaluate(Fraction fr, String input){
+		
+		String regAbs = "abs|ABS|Abs|a|A";  // absolute value 
+		String regNegate = "neg|NEG|Neg|n|N";  // negate the value
+		String regClear = "clear|CLEAR|Clear|c|C"; // clear
+		String regFraction = "(\\-)?\\d/(\\-)?\\d"; // fraction
+		String regDigit = "(\\s)?(\\-)?\\d(\\s)?"; // single digit
+		String regOperation = "(\\s)?(\\+|\\-|\\*|/)(\\s)?"; // operation
+		String regQuit = "quit|QUIT|Quit|q{1,1}|Q{1,1}";  // quit
+		
+		StringTokenizer st = new StringTokenizer(input);
+		Fraction fnew = new Fraction(0,1);
+		
+		do{
+			String s = st.nextToken();
+			if( s.matches(regQuit)){   // quit
+				System.out.println("found quit request");
+				break;
+			} else if(s.matches(regClear)){  // clear
+				System.out.println("requested  Clear ");
+			} else if(s.matches(regOperation)){  // operation
+				System.out.println("found Operation ");
+			} else if(s.matches(regAbs)){  // absolute value 
+				System.out.println("requested  ABS ");
+			}else if(s.matches(regNegate)){  // negate the value
+				System.out.println("requested  Negate ");
+			}else if(s.matches(regFraction)){  // fraction
+				System.out.println("found  Fraction");
+			}else if(s.matches(regDigit)){ // single digit
+				System.out.println("found a Digit");
+			}else {
+				System.out.print("found nothing from the regular Expressions:   ");
+				System.out.println(s);
+			}
+		}while(st.hasMoreTokens());
+		
 		return new Fraction(1,1);
 	}
 	
