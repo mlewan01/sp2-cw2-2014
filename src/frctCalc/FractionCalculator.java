@@ -70,7 +70,6 @@ public class FractionCalculator {
 		
 		sc.close();
 		System.out.println("main loop exited...");
-		//Fraction newFrac = evaluate(new Fraction(0,2), "dupa");
 		
 	}	
 	
