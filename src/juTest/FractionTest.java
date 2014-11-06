@@ -1,4 +1,6 @@
-package frctCalc;
+package juTest;
+
+import frctCalc.Fraction;
 
 /**
  * Created by keith for the second coursework assignment.
