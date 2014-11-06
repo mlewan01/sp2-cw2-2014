@@ -14,11 +14,13 @@ import java.util.regex.Pattern;
  */
 public class FractionCalculator {
 	
-	private Fraction f;
+	private Fraction f;  //  current state of the calculator
+	private String ope;  //  last remembered operation
 	
 	public FractionCalculator(){
 		
 		f = new Fraction(0,1);
+		ope=null;
 	}
 	
 	public static void main(String[] arg){
@@ -68,6 +70,7 @@ public class FractionCalculator {
 		
 		sc.close();
 		System.out.println("main loop exited...");
+		//Fraction newFrac = evaluate(new Fraction(0,2), "dupa");
 		
 	}	
 	
@@ -108,6 +111,19 @@ public class FractionCalculator {
 		}while(st.hasMoreTokens());
 		
 		return new Fraction(1,1);
+	}
+	
+	public void setFraction(Fraction frac){
+		this.f = frac;
+	}
+	public Fraction getFraction(){
+		return this.f;
+	}
+	public void setOperation(String s){
+		this.ope = s;
+	}
+	public String getOperation(){
+		return this.ope;
 	}
 	
 }

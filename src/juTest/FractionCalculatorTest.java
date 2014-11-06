@@ -1,11 +1,9 @@
-/**
- * 
- */
 package juTest;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import frctCalc.Fraction;
+import frctCalc.FractionCalculator;
 
 /**
  * @author me
@@ -14,8 +12,12 @@ import org.junit.Test;
 public class FractionCalculatorTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testEvaluate() {
+		Fraction f = new Fraction(0,1);
+		String s = "3/4 + 1/-3 * 7 / 5";
+		FractionCalculator fc = new FractionCalculator();
+		
+		fc.evaluate(f, s);
 	}
 
 }
