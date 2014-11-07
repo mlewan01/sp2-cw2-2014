@@ -70,14 +70,20 @@ public class FractionCalculator {
 				break;
 			} else if(s.matches(regClear)){  // clear
 				System.out.println("requested  Clear ");
+				this.f.setDenominator(1);
+				this.f.setNumerator(0);
 			} else if(s.matches(regOperation)){  // operation
 				System.out.println("found Operation ");
+				this.setOperation(s);
 			} else if(s.matches(regAbs)){  // absolute value 
 				System.out.println("requested  ABS ");
+				this.f = this.f.absValue();
 			}else if(s.matches(regNegate)){  // negate the value
 				System.out.println("requested  Negate ");
+				this.f = this.f.negate();
 			}else if(s.matches(regFraction)){  // fraction
 				System.out.println("found  Fraction");
+				// this.f           <<<<--------------------------
 			}else if(s.matches(regDigit)){ // single digit
 				System.out.println("found a Digit");
 			}else {
