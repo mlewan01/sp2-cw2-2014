@@ -39,9 +39,9 @@ public class FractionCalculator {
 			System.out.println("Please, enter data to calculate Fraction: ");
 			s = sc.nextLine();
 			fc.evaluate(fc.f, s);
-			System.out.println("----------------------------------");
+			System.out.println("----------------------------------------");
 			System.out.println("Fraction falue after this alculations is: "+fc.f);
-			System.out.println("----------------------------------");
+			System.out.println("----------------------------------------");
 		}while(!fc.quit);
 		
 		sc.close();
