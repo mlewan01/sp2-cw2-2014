@@ -40,7 +40,7 @@ public class FractionCalculator {
 			s = sc.nextLine();
 			fc.evaluate(s);
 			System.out.println("----------------------------------------");
-			System.out.println("Fraction falue after this alculations is: "+ fc.getFraction());
+			System.out.println("Fraction falue after this alculations is: "+ fc.getFraction() + "  operation:  " + fc.getOperation());
 			System.out.println("----------------------------------------");
 		}while(!fc.quit);
 		
@@ -49,7 +49,7 @@ public class FractionCalculator {
 		
 	}	
 	
-	public Fraction evaluate(String input){
+	public void evaluate(String input){
 		
 		String regAbs = "abs|ABS|Abs|a|A";  // absolute value 
 		String regNegate = "neg|NEG|Neg|n|N";  // negate the value
@@ -83,21 +83,26 @@ public class FractionCalculator {
 			}else if(s.matches(regFraction)){  // fraction
 				System.out.println("found  Fraction");
 				setFraction(s);
-				// this.f           <<<<--------------------------
 			}else if(s.matches(regDigit)){ // single Number
 				System.out.println("found a Digit");
 				setNumber(s);
 			}else {
 				System.out.print("found nothing from the regular Expressions:   ");
 				System.out.println(s);
+				
 			}
 		}while(st.hasMoreTokens());
 		
-		return new Fraction(1,1);
 	}
 	
 	public void setOperation(String s){
-		this.ope = s;
+		if(this.ope != null) {
+			//      throw some exception !!!
+			System.out.println("there is already operation memorised...  " + this.ope);
+			this.ope = null;
+		} else if (s == null){
+			this.ope = null;
+		} else this.ope = s;
 	}
 	public String getOperation(){
 		return this.ope;
