@@ -17,6 +17,11 @@ public class Fraction {
         setNumerator(num / gcd);
         setDenominator(denom / gcd);
     }
+    
+    public Fraction(int num){
+    	setNumerator(num);
+    	setDenominator(1);
+    }
 
     @Override
     public String toString() {

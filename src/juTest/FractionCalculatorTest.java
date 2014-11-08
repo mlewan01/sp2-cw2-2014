@@ -17,6 +17,6 @@ public class FractionCalculatorTest {
 		String s = "3/4 + 1/-3 * 7 / 5";
 		FractionCalculator fc = new FractionCalculator();
 		
-		fc.evaluate(f, s);
+		fc.evaluate(s);
 	}
 }

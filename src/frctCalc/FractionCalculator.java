@@ -38,9 +38,9 @@ public class FractionCalculator {
 		do{
 			System.out.println("Please, enter data to calculate Fraction: ");
 			s = sc.nextLine();
-			fc.evaluate(fc.f, s);
+			fc.evaluate(s);
 			System.out.println("----------------------------------------");
-			System.out.println("Fraction falue after this alculations is: "+fc.f);
+			System.out.println("Fraction falue after this alculations is: "+ fc.getFraction());
 			System.out.println("----------------------------------------");
 		}while(!fc.quit);
 		
@@ -49,13 +49,13 @@ public class FractionCalculator {
 		
 	}	
 	
-	public Fraction evaluate(Fraction fr, String input){
+	public Fraction evaluate(String input){
 		
 		String regAbs = "abs|ABS|Abs|a|A";  // absolute value 
 		String regNegate = "neg|NEG|Neg|n|N";  // negate the value
 		String regClear = "clear|CLEAR|Clear|c|C"; // clear
-		String regFraction = "(\\-)?\\d/(\\-)?\\d"; // fraction
-		String regDigit = "(\\s)?(\\-)?\\d(\\s)?"; // single digit
+		String regFraction = "(\\-)?\\d{1,}/(\\-)?\\d{1,}"; // fraction
+		String regDigit = "(\\s)?(\\-)?\\d{1,}(\\s)?"; // number
 		String regOperation = "(\\s)?(\\+|\\-|\\*|/)(\\s)?"; // operation
 		String regQuit = "quit|QUIT|Quit|q{1,1}|Q{1,1}";  // quit
 		
@@ -82,9 +82,11 @@ public class FractionCalculator {
 				this.f = this.f.negate();
 			}else if(s.matches(regFraction)){  // fraction
 				System.out.println("found  Fraction");
+				setFraction(s);
 				// this.f           <<<<--------------------------
-			}else if(s.matches(regDigit)){ // single digit
+			}else if(s.matches(regDigit)){ // single Number
 				System.out.println("found a Digit");
+				setNumber(s);
 			}else {
 				System.out.print("found nothing from the regular Expressions:   ");
 				System.out.println(s);
@@ -101,12 +103,27 @@ public class FractionCalculator {
 		return this.ope;
 	}
 	public void setFraction(String s){
+		
 		int i = Integer.valueOf(s.charAt(0));
 		int j = Integer.valueOf(s.charAt(2));
+		Fraction f = new Fraction(i,j);
 		if(this.ope==null){
-			this.f = new Fraction(i,j);
+			this.f = f;
 		}else{
-			
+			operation(f,this.ope);
+			this.ope=null;
+		}
+	}
+	
+	public void setNumber(String s){
+		int i = Integer.valueOf(s);
+		Fraction f = new Fraction(i);
+		
+		if(this.ope==null){
+			this.f = f;
+		}else{
+			operation(f,this.ope);
+			this.ope=null;
 		}
 	}
 
@@ -114,7 +131,7 @@ public class FractionCalculator {
 		return this.f;
 	}
 	
-	public Fraction operation(Fraction f, String s){
+	public void operation(Fraction f, String s){
 		switch (s){
 			case "+": this.f = (this.f).add(f);
 				break;
@@ -126,7 +143,5 @@ public class FractionCalculator {
 				break;
 			default: System.out.println("Fraction Calculator -> operation -> unrecognized operation...");
 		}
-		
-		return new Fraction(1,1);
 	}
 }
