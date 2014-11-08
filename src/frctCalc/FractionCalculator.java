@@ -109,8 +109,8 @@ public class FractionCalculator {
 	}
 	public void setFraction(String s){
 		
-		int i = Integer.valueOf(s.charAt(0));
-		int j = Integer.valueOf(s.charAt(2));
+		int i = Integer.valueOf(s.charAt(0)+"");
+		int j = Integer.valueOf(s.charAt(2)+"");
 		Fraction f = new Fraction(i,j);
 		if(this.ope==null){
 			this.f = f;

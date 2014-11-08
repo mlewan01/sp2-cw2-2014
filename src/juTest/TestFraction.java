@@ -17,8 +17,8 @@ import frctCalc.Fraction;
 public class TestFraction {
 	
 	private static Fraction frac;
-	private static int num = 2;
-	private static int den = 4;
+	private static int num = 1;
+	private static int den = 2;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -26,6 +26,7 @@ public class TestFraction {
 		System.out.println("Creating Fraction: " + num + "  " + den);
 		System.out.println("Numerator: " + frac.getNumerator());
 		System.out.println("Denumerator: " + frac.getDenominator());
+		System.out.println("toString method:  " + frac);
 	}
 	@Test
 	public void testNegate(){
