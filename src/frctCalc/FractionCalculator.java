@@ -70,8 +70,7 @@ public class FractionCalculator {
 				break;
 			} else if(s.matches(regClear)){  // clear
 				System.out.println("requested  Clear ");
-				this.f.setDenominator(1);
-				this.f.setNumerator(0);
+				this.f = new Fraction(0,1);
 			} else if(s.matches(regOperation)){  // operation
 				System.out.println("found Operation ");
 				this.setOperation(s);
@@ -95,17 +94,39 @@ public class FractionCalculator {
 		return new Fraction(1,1);
 	}
 	
-	public void setFraction(Fraction frac){
-		this.f = frac;
-	}
-	public Fraction getFraction(){
-		return this.f;
-	}
 	public void setOperation(String s){
 		this.ope = s;
 	}
 	public String getOperation(){
 		return this.ope;
 	}
+	public void setFraction(String s){
+		int i = Integer.valueOf(s.charAt(0));
+		int j = Integer.valueOf(s.charAt(2));
+		if(this.ope==null){
+			this.f = new Fraction(i,j);
+		}else{
+			
+		}
+	}
+
+	public Fraction getFraction(){
+		return this.f;
+	}
 	
+	public Fraction operation(Fraction f, String s){
+		switch (s){
+			case "+": this.f = (this.f).add(f);
+				break;
+			case "-": this.f = (this.f).subtract(f);
+				break;
+			case "*": this.f = (this.f).multiply(f);
+				break;
+			case "/": this.f = (this.f).divide(f);
+				break;
+			default: System.out.println("Fraction Calculator -> operation -> unrecognized operation...");
+		}
+		
+		return new Fraction(1,1);
+	}
 }
