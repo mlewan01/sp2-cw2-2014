@@ -142,7 +142,7 @@ public class Fraction {
     	try{
     		some = new Fraction(tn, td);
     	}catch (FractionDenomExc e){
-        	System.out.println("exception in method multiplication, class Fraction");
+        	System.out.println("exception in method negate, class Fraction");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
         }
     	return some;
@@ -159,7 +159,7 @@ public class Fraction {
     	try{
     		some = new Fraction(tn, td);
     	}catch (FractionDenomExc e){
-        	System.out.println("exception in method multiplication, class Fraction");
+        	System.out.println("exception in method absValue, class Fraction");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
         }
     	return some;
@@ -175,7 +175,20 @@ public class Fraction {
     	int on = other.getNumerator();
     	int td = this.getDenominator();
     	int tn = this.getNumerator();
-    	return new Fraction(tn*od, td*on);
+    	try{
+    		other = new Fraction(tn*od, td*on);
+    	}catch(FractionDenomExc e){
+    		System.out.println("division of two Fractions with value 0/1");
+    		// this exception will only occur when both fractions are 0/1
+    		// in normal world result of divide operation would be equal to 0
+    		// in this application world result has to be equal to 0/1
+    		try{
+    			other = new Fraction(0,1);
+    		}catch(FractionDenomExc ex){
+    			// this exception cannot occur 
+    		}
+    	}
+    	return other;
     }
     
     /**
@@ -188,11 +201,21 @@ public class Fraction {
     	int on = other.getNumerator();
     	int td = this.getDenominator();
     	int tn = this.getNumerator();
-    	if(od == td) return new Fraction(tn-on, od);
-    	else {
-    		int i = tn*od - on*td;
-    		return new Fraction(i, td*od);
+    	try{
+    		if(od == td) other = new Fraction(tn-on, od);
+    	}catch(FractionDenomExc e){
+    		System.out.println("exception in method substract, class Fraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
     	}
+    	
+    	try{
+    		if(od != td) other = new Fraction(tn*od - on*td, td*od);
+    	}catch(FractionDenomExc e){
+    		System.out.println("exception in method substract, class Fraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
+    	}
+    	
+    	return other;
     }
     
     /**
@@ -205,11 +228,20 @@ public class Fraction {
     	int on = other.getNumerator();
     	int td = this.getDenominator();
     	int tn = this.getNumerator();
-    	if(od == td) return new Fraction(on+tn, od);
-    	else {
-    		int i = tn*od + on*td;
-    		return new Fraction(i, td*od);
+    	try{
+    		if(od == td) other = new Fraction(on+tn, od);
+    	}catch(FractionDenomExc e){
+    		System.out.println("exception in method substract, class Fraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
     	}
+    	try{
+    		if(od != td) other = new Fraction(tn*od + on*td, td*od);
+    	}catch(FractionDenomExc e){
+    		System.out.println("exception in method substract, class Fraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
+    	}
+    	
+    	return other;
     }
     
     /**
