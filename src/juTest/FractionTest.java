@@ -1,6 +1,6 @@
 package juTest;
 
-import except.FractionDenomExc;
+import except.FractionDenominatorException;
 import frctCalc.Fraction;
 
 /**
@@ -31,7 +31,7 @@ public class FractionTest {
 			test(new Fraction(4, -8),new Fraction(1, 2),"error test 5");
 		
 		        // extend with extra tests
-    	}catch (FractionDenomExc e){
+    	}catch (FractionDenominatorException e){
         	System.out.println("exception in class TestFraction");
         	System.out.println("Please remember, fraction with denominator = 0 do not exist");
 		}

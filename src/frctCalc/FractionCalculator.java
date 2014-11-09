@@ -8,7 +8,8 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
-import except.FractionDenomExc;
+import except.FractionDenominatorException;
+import except.FractionOperationRepeat;
 
 /**
  * Copy rights Mariusz Lewandowski
@@ -27,7 +28,7 @@ public class FractionCalculator {
 		try{
 			f = new Fraction(0,1);
 			some = new Fraction(1,1);
-		}catch (FractionDenomExc e){
+		}catch (FractionDenominatorException e){
         	System.out.println("exception in method negate, class FractionCalculator");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
 		}
@@ -39,6 +40,7 @@ public class FractionCalculator {
 		
 		System.out.println("wellcome in Fraction calculator  \\o/\n");
 		System.out.println("please enter data in following format: \"3/4 + 1/-3 * 7 / 5\"");
+		System.out.println("permitted operations: *, /, +, -, abs, neg, clear, quit");
 		System.out.println("you can enter data in multiple lines (provided you know how)!");
 		
 		String s = "";
@@ -49,7 +51,7 @@ public class FractionCalculator {
 			s = sc.nextLine();
 			try{
 				fc.evaluate(s);
-			}catch (FractionDenomExc e){
+			}catch (FractionDenominatorException e){
 	        	System.out.println("exception in method main, class FractionCalculator");
 	        	System.out.println("one of the fractions has its denominator set to 0. Please try again...!");
 	        	continue;
@@ -59,7 +61,7 @@ public class FractionCalculator {
 	        	continue;
 			}
 			System.out.println("----------------------------------------");
-			System.out.println("Fraction falue after this alculations is: "+ fc.getFraction() + "  operation:  " + fc.getOperation());
+			System.out.println("Fraction falue after this calculations is: "+ fc.getFraction() + "  operation:  " + fc.getOperation());
 			System.out.println("----------------------------------------");
 		}while(!fc.quit);
 		
@@ -73,7 +75,7 @@ public class FractionCalculator {
      * in order to perform appropriate calculations 
      * @param input the string representing user input to be decoded
      */
-	public void evaluate(String input) throws FractionDenomExc, NumberFormatException{
+	public void evaluate(String input) throws FractionDenominatorException, NumberFormatException{
 		
 		String regAbs = "abs|ABS|Abs|a|A";  // absolute value 
 		String regNegate = "neg|NEG|Neg|n|N";  // negate the value
@@ -101,13 +103,17 @@ public class FractionCalculator {
 				System.out.println("requested  Clear ");
 				try{
 					this.f = new Fraction(0,1);
-				}catch (FractionDenomExc e){
+				}catch (FractionDenominatorException e){
 		        	System.out.println("exception in method negate, class Fraction");
 		        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
 				}
 			} else if(s.matches(regOperation)){  // operation
 				System.out.println("found Operation:  " + s);
-				this.setOperation(s);
+				try{
+					this.setOperation(s);
+				}catch(FractionOperationRepeat e){ 
+					e.getMessage();
+					/* nothing else is required to be done in this implementation*/}
 			} else if(s.matches(regAbs)){  // absolute value 
 				System.out.println("requested  ABS ");
 				this.f = this.f.absValue();
@@ -124,7 +130,7 @@ public class FractionCalculator {
 				System.out.print("found nothing from the regular Expressions:   ");
 				System.out.println(s);
 			}
-			System.out.println("Fraction falue after this alculations is: "+ this.getFraction() + "  operation:  " + this.getOperation());
+			System.out.println("Fraction falue after decoded element is: "+ this.getFraction() + "  operation:  " + this.getOperation());
 		}while(st.hasMoreTokens());
 		
 	}
@@ -133,11 +139,13 @@ public class FractionCalculator {
      * method will decide whether to remember new entered operation or not
      * @param s contains new value for this objects field ope, operation to remember
      */
-	public void setOperation(String s){
+	public void setOperation(String s) throws FractionOperationRepeat{
 		if(this.ope != null) {
-			//      throw some exception !!!
-			System.out.println("there is already operation memorised... " + this.ope);
-			this.ope = null;
+			System.out.println("there was already an operation memorised... " + this.ope);
+			String tmp =this.ope;
+			this.ope = s;
+			throw new FractionOperationRepeat("there was already an operation memorised... " + tmp);
+			
 		} else if (s == null){
 			this.ope = null;
 		} else this.ope = s;
@@ -157,7 +165,7 @@ public class FractionCalculator {
      * before setting new fraction in class FractionCalculator
      * @param s represents part of the user entered string representing a fraction
      */
-	public void setFraction(String s)throws FractionDenomExc, NumberFormatException{
+	public void setFraction(String s)throws FractionDenominatorException, NumberFormatException{
 		int index = s.indexOf("/");
 		int i = Integer.valueOf(s.substring(0, index));
 		int j = Integer.valueOf(s.substring(index+1, s.length()));
@@ -181,7 +189,7 @@ public class FractionCalculator {
 		Fraction f = null;
 		try{
 			f = new Fraction(i);
-		}catch (FractionDenomExc e){
+		}catch (FractionDenominatorException e){
         	System.out.println("exception in method negate, class Fraction");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
 		}

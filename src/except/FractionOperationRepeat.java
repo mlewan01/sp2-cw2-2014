@@ -9,12 +9,14 @@ package except;
  * @author: mlwan01 <Mariusz Lewandowski, Student ref: 12906023>
  * class: sp2-2014, cw2
  */
-public class FractionDenomExc extends Exception {
-	
-	public String msg;
 
-	public FractionDenomExc(String s){
+public class FractionOperationRepeat extends Exception {
+	
+	String msg;
+	
+	public FractionOperationRepeat(String s){
 		super(s);
-		msg=s;
+		msg = s;
 	}
-} 
+	
+}

@@ -2,7 +2,7 @@ package juTest;
 
 import org.junit.Test;
 
-import except.FractionDenomExc;
+import except.FractionDenominatorException;
 import frctCalc.Fraction;
 import frctCalc.FractionCalculator;
 
@@ -20,7 +20,7 @@ public class FractionCalculatorTest {
 		Fraction f=null;
 		try{
 			 f = new Fraction(0,1);
-		}catch(FractionDenomExc e){
+		}catch(FractionDenominatorException e){
 			System.out.println("fractions' denominator cannot be equal to 0  !!!");
 		}
 		
@@ -30,7 +30,7 @@ public class FractionCalculatorTest {
 		
 		try{
 			fc.evaluate(s);
-		}catch (FractionDenomExc e){
+		}catch (FractionDenominatorException e){
         	System.out.println("exception in class FractionCalculatorTest");
         	System.out.println("Please remember, Fraction with denominator = 0 do not exist");
 		}

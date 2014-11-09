@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import except.FractionDenomExc;
+import except.FractionDenominatorException;
 import frctCalc.Fraction;
 
 /**
@@ -27,7 +27,7 @@ public class TestFraction {
 	public static void setUpBeforeClass() {
 		try{
 		frac = new Fraction(num,den);
-		}catch (FractionDenomExc e){
+		}catch (FractionDenominatorException e){
         	System.out.println("exception in class TestFraction");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
 		}
@@ -51,7 +51,7 @@ public class TestFraction {
 		Fraction n = null;
 		try{
 			n = new Fraction(3,2);
-		}catch (FractionDenomExc e){
+		}catch (FractionDenominatorException e){
         	System.out.println("exception in class TestFraction");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
 		}
@@ -63,7 +63,7 @@ public class TestFraction {
 		Fraction n = null;
 		try{
 			n = new Fraction(3,2);
-		}catch (FractionDenomExc e){
+		}catch (FractionDenominatorException e){
         	System.out.println("exception in class TestFraction");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
 		}
@@ -75,7 +75,7 @@ public class TestFraction {
 		Fraction n = null;
 		try{
 			n = new Fraction(3,2);
-		}catch (FractionDenomExc e){
+		}catch (FractionDenominatorException e){
         	System.out.println("exception in class TestFraction");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
 		}
@@ -87,7 +87,7 @@ public class TestFraction {
 		Fraction n = null;
 		try{
 			n=new Fraction(num, den);
-		}catch (FractionDenomExc e){
+		}catch (FractionDenominatorException e){
         	System.out.println("exception in class TestFraction");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
 		}
