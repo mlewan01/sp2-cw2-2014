@@ -100,13 +100,7 @@ public class FractionCalculator {
 				quit=true;
 				break;
 			} else if(s.matches(regClear)){  // clear
-				System.out.println("requested  Clear ");
-				try{
-					this.f = new Fraction(0,1);
-				}catch (FractionDenominatorException e){
-		        	System.out.println("exception in method negate, class Fraction");
-		        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
-				}
+				this.clear();
 			} else if(s.matches(regOperation)){  // operation
 				System.out.println("found Operation:  " + s);
 				try{
@@ -127,8 +121,9 @@ public class FractionCalculator {
 				System.out.println("found a Digit:    " + s);
 				setNumber(s);
 			}else {
-				System.out.print("found nothing from the regular Expressions:   ");
+				System.out.print("found nothing what could be decoded as opertion on class Fraction...:   ");
 				System.out.println(s);
+				clear();
 			}
 			System.out.println("Fraction falue after decoded element is: "+ this.getFraction() + "  operation:  " + this.getOperation());
 		}while(st.hasMoreTokens());
@@ -228,6 +223,16 @@ public class FractionCalculator {
 			case "/": this.f = (this.f).divide(f);
 				break;
 			default: System.out.println("Fraction Calculator -> operation -> unrecognized operation...");
+		}
+	}
+	public void clear(){
+		System.out.println("requested to clear calculator's state");
+		this.ope = null;
+		try{
+			this.f = new Fraction(0,1);
+		}catch (FractionDenominatorException e){
+        	System.out.println("exception in method negate, class Fraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
 		}
 	}
 }
