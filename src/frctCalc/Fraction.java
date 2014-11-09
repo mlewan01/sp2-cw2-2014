@@ -77,9 +77,9 @@ public class Fraction {
     }
 
     /**
-     * desc:
-     * @param some int i
-     * @return
+     * method checks for objects equality among objects of the same class
+     * @param o object to check for equality with this object
+     * @return returns true if objects are equale and false otherwise
      */
     @Override
     public boolean equals(Object o) {
@@ -95,9 +95,8 @@ public class Fraction {
     }
 
     /**
-     * desc:
-     * @param some int i
-     * @return
+     * method calculates and returns class' hash code
+     * @return class hash code 
      */
     @Override
     public int hashCode() {
@@ -106,6 +105,11 @@ public class Fraction {
         return result;
     }
 
+    /**
+     * method multiplies this object with the object passed as a parameter
+     * @param other an object this class will be multiplied with 
+     * @return new object of class Fraction, outcome of multiplication
+     */
     public Fraction multiply(Fraction other) {
 
         int num = this.getNumerator() * other.getNumerator();
@@ -113,12 +117,19 @@ public class Fraction {
         return new Fraction(num, denom);
     }
     
+    /**
+     * method will negate value of this object and return it as a new object of class Fraction
+     * @return new object Fraction with the value equal -(this Fraction)
+     */
     public Fraction negate(){
     	int tn = this.getNumerator()*(-1);
     	int td = this.getDenominator();
     	return new Fraction(tn, td);
     }
-    
+    /**
+     * method will absolute value the value of this object and return it as a new object of class Fraction
+     * @return new object of class Fraction with value equal to absolute value of this Fraction
+     */
     public Fraction absValue(){
     	int tn = this.getNumerator();
     	int td = this.getDenominator();
@@ -127,6 +138,11 @@ public class Fraction {
     	return new Fraction(tn, td);
     }
     
+    /**
+     * method will divide this object with the object passed as a parameter
+     * @param other represents fraction with which this object will be divided with
+     * @return new object of class Fraction with value of this devision 
+     */
     public Fraction divide(Fraction other){
     	int od = other.getDenominator();
     	int on = other.getNumerator();
@@ -135,6 +151,11 @@ public class Fraction {
     	return new Fraction(tn*od, td*on);
     }
     
+    /**
+     * method will subtract value of the object passed as a parameter form this object
+     * @param other represents an object value of which will be subtracted from this object
+     * @return new object of class Fraction with value of this subtraction
+     */
     public Fraction subtract(Fraction other){
     	int od = other.getDenominator();
     	int on = other.getNumerator();
@@ -147,6 +168,11 @@ public class Fraction {
     	}
     }
     
+    /**
+     * dmethod will add value of the object passed as a parameter to this object
+     * @param other represents an object value of which will be added to this object
+     * @return new object of class Fraction with value of this subtraction 
+     */
     public Fraction add(Fraction other){
     	int od = other.getDenominator();
     	int on = other.getNumerator();
@@ -158,7 +184,13 @@ public class Fraction {
     		return new Fraction(i, td*od);
     	}
     }
-
+    
+    /**
+     * method will return a greatest common divisor of the two parameters
+     * @param a one of the two parameters to calculate greatest common divisor
+     * @param b second of the two parameters to calculate greatest common divisor
+     * @return a greatest common divisor of the two supplied parameters 
+     */
     private int myGcd(int a, int b) {
         while (b != 0) {
             int t = b;

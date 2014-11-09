@@ -35,7 +35,6 @@ public class FractionCalculator {
 		String s = "";
 		Scanner sc = new Scanner(System.in);
 		FractionCalculator fc = new FractionCalculator();
-		
 		do{
 			System.out.println("Please, enter data to calculate Fraction: ");
 			s = sc.nextLine();
