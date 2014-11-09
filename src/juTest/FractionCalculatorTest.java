@@ -1,6 +1,8 @@
 package juTest;
 
 import org.junit.Test;
+
+import except.FractionDenomExc;
 import frctCalc.Fraction;
 import frctCalc.FractionCalculator;
 
@@ -14,11 +16,23 @@ public class FractionCalculatorTest {
 
 	@Test
 	public void testEvaluate() {
-		Fraction f = new Fraction(0,1);
+		
+		Fraction f=null;
+		try{
+			 f = new Fraction(0,1);
+		}catch(FractionDenomExc e){
+			System.out.println("fractions' denominator cannot be equal to 0  !!!");
+		}
+		
 		System.out.println(f);
 		String s = "3/4 + 1/-3 * 7 / 5";
 		FractionCalculator fc = new FractionCalculator();
 		
-		fc.evaluate(s);
+		try{
+			fc.evaluate(s);
+		}catch (FractionDenomExc e){
+        	System.out.println("exception in class FractionCalculatorTest");
+        	System.out.println("Please remember, Fraction with denominator = 0 do not exist");
+		}
 	}
 }

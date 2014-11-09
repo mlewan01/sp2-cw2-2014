@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import except.FractionDenomExc;
 import frctCalc.Fraction;
 
 /**
@@ -24,7 +25,12 @@ public class TestFraction {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() {
+		try{
 		frac = new Fraction(num,den);
+		}catch (FractionDenomExc e){
+        	System.out.println("exception in class TestFraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
+		}
 		System.out.println("Creating Fraction: " + num + "  " + den);
 		System.out.println("Numerator: " + frac.getNumerator());
 		System.out.println("Denumerator: " + frac.getDenominator());
@@ -42,25 +48,50 @@ public class TestFraction {
 	}
 	@Test
 	public void testDivide(){
-		Fraction n = new Fraction(3,2);
+		Fraction n = null;
+		try{
+			n = new Fraction(3,2);
+		}catch (FractionDenomExc e){
+        	System.out.println("exception in class TestFraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
+		}
 		Fraction ne = frac.divide(n);
 		System.out.println("Dividing "+frac.toString()+" and "+n.toString()+" equals "+ne.toString());
 	}
 	@Test
 	public void testSubtract(){
-		Fraction n = new Fraction(3,2);
+		Fraction n = null;
+		try{
+			n = new Fraction(3,2);
+		}catch (FractionDenomExc e){
+        	System.out.println("exception in class TestFraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
+		}
 		Fraction ne = frac.subtract(n);
 		System.out.println("Subtructing: "+frac.toString()+" and "+n.toString() +" equals "+ne.toString());
 	}
 	@Test
 	public void testAdd(){
-		Fraction n = new Fraction(3,2);
+		Fraction n = null;
+		try{
+			n = new Fraction(3,2);
+		}catch (FractionDenomExc e){
+        	System.out.println("exception in class TestFraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
+		}
 		Fraction ne = frac.add(n);
 		System.out.println("Adding: "+frac.toString()+" and "+n.toString() +" equals "+ne.toString());
 	}
 	@Test
 	public void testMultiply(){
-		Fraction f = frac.multiply(new Fraction(num, den));
+		Fraction n = null;
+		try{
+			n=new Fraction(num, den);
+		}catch (FractionDenomExc e){
+        	System.out.println("exception in class TestFraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
+		}
+		Fraction f = frac.multiply(n);
 		int i = f.getDenominator();
 		assertTrue("is multiplying correct ?", i!=0);
 		

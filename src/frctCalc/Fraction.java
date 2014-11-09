@@ -136,9 +136,10 @@ public class Fraction {
      * method will negate value of this object and return it as a new object of class Fraction
      * @return new object Fraction with the value equal -(this Fraction)
      */
-    public Fraction negate(Fraction some){
+    public Fraction negate(){
     	int tn = this.getNumerator()*(-1);
     	int td = this.getDenominator();
+    	Fraction some = null;
     	try{
     		some = new Fraction(tn, td);
     	}catch (FractionDenomExc e){
@@ -151,11 +152,12 @@ public class Fraction {
      * method will absolute value the value of this object and return it as a new object of class Fraction
      * @return new object of class Fraction with value equal to absolute value of this Fraction
      */
-    public Fraction absValue(Fraction some){
+    public Fraction absValue(){
     	int tn = this.getNumerator();
     	int td = this.getDenominator();
     	if(tn<0) tn=tn*(-1);
     	if(td<0) td= td*(-1);
+    	Fraction some = null;
     	try{
     		some = new Fraction(tn, td);
     	}catch (FractionDenomExc e){
