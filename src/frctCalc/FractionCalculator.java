@@ -37,36 +37,44 @@ public class FractionCalculator {
 	}
 	
 	public static void main(String[] arg){
-		
-		System.out.println("wellcome in Fraction calculator  \\o/\n");
-		System.out.println("please enter data in following format: \"3/4 + 1/-3 * 7 / 5\"");
-		System.out.println("permitted operations: *, /, +, -, abs, neg, clear, quit");
-		System.out.println("you can enter data in multiple lines (provided you know how)!");
-		
-		String s = "";
-		Scanner sc = new Scanner(System.in);
-		FractionCalculator fc = new FractionCalculator();
-		do{
-			System.out.println("Please, enter data to calculate Fraction: ");
-			s = sc.nextLine();
-			try{
-				fc.evaluate(s);
-			}catch (FractionDenominatorException e){
-	        	System.out.println("exception in method main, class FractionCalculator");
-	        	System.out.println("one of the fractions has its denominator set to 0. Please try again...!");
-	        	continue;
-			}catch(NumberFormatException ex){
-				System.out.println("exception in method main, class FractionCalculator");
-	        	System.out.println("one of the numbers is too large, it cannot be represented. Sorry!! Please try again...!");
-	        	continue;
-			}
-			System.out.println("----------------------------------------");
-			System.out.println("Fraction falue after this calculations is: "+ fc.getFraction() + "  operation:  " + fc.getOperation());
-			System.out.println("----------------------------------------");
-		}while(!fc.quit);
-		
-		sc.close();
-		System.out.println("main loop exited...");
+		boolean b;
+		try{
+			do{
+				b=false;
+				System.out.println("wellcome in Fraction calculator  \\o/\n");
+				System.out.println("please enter data in following format: \"3/4 + 1/-3 * 7 / 5\"");
+				System.out.println("permitted operations: *, /, +, -, abs, neg, clear, quit");
+				System.out.println("you can enter data in multiple lines (provided you know how)!");
+				
+				String s = "";
+				Scanner sc = new Scanner(System.in);
+				FractionCalculator fc = new FractionCalculator();
+				do{
+					System.out.println("Please, enter data to calculate Fraction: ");
+					s = sc.nextLine();
+					try{
+						fc.evaluate(s);
+					}catch (FractionDenominatorException e){
+			        	System.out.println("exception in method main, class FractionCalculator");
+			        	System.out.println("one of the fractions has its denominator set to 0. Please try again...!");
+			        	continue;
+					}catch(NumberFormatException ex){
+						System.out.println("exception in method main, class FractionCalculator");
+			        	System.out.println("one of the numbers is too large, it cannot be represented. Sorry!! Please try again...!");
+			        	continue;
+					}
+					System.out.println("----------------------------------------");
+					System.out.println("Fraction falue after this calculations is: "+ fc.getFraction() + "  operation:  " + fc.getOperation());
+					System.out.println("----------------------------------------");
+				}while(!fc.quit);
+				
+				sc.close();
+				System.out.println("main loop exited...");
+			}while(b);
+		}catch(Exception exc){
+			System.out.println("some unexpected error has occured, reseting the program...");
+			b=true;
+		}
 		
 	}	
 	/**
