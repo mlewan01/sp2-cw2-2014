@@ -48,7 +48,12 @@ public class FractionCalculator {
 		System.out.println("main loop exited...");
 		
 	}	
-	
+	/**
+     * method will evaluate string supplied as a parameter and will decode what calculation user
+     * would like to perform. Base on this decoding function will call appropriate class functions
+     * in order to perform appropriate calculations 
+     * @param input the string representing user input to be decoded
+     */
 	public void evaluate(String input){
 		
 		String regAbs = "abs|ABS|Abs|a|A";  // absolute value 
@@ -95,6 +100,10 @@ public class FractionCalculator {
 		
 	}
 	
+	/**
+     * method will decide whether to remember new entered operation or not
+     * @param s contains new value for this objects field ope, operation to remember
+     */
 	public void setOperation(String s){
 		if(this.ope != null) {
 			//      throw some exception !!!
@@ -104,9 +113,21 @@ public class FractionCalculator {
 			this.ope = null;
 		} else this.ope = s;
 	}
+	
+	/**
+     * method returns currently memorised operation 
+     * @return currently memorised operation
+     */
 	public String getOperation(){
 		return this.ope;
 	}
+	
+	/**
+     * function will decide whether to just set new Fraction
+     * or to perform calculations, according to the memorised operation,
+     * before setting new fraction in class FractionCalculator
+     * @param s represents part of the user entered string representing a fraction
+     */
 	public void setFraction(String s){
 		int index = s.indexOf("/");
 		int i = Integer.valueOf(s.substring(0, index));
@@ -120,6 +141,12 @@ public class FractionCalculator {
 		}
 	}
 	
+	/**
+     * function will decide whether to just set new Fraction from given number
+     * or to perform calculations, according to the memorised operation,
+     * before setting new fraction in class FractionCalculator
+     * @param s represents part of the user entered string representing a number
+     */
 	public void setNumber(String s){
 		int i = Integer.valueOf(s);
 		Fraction f = new Fraction(i);
@@ -132,10 +159,21 @@ public class FractionCalculator {
 		}
 	}
 
+	/**
+     * method will return fraction currently held by this class. The Fraction represents
+     * last state of the calculations performed
+     * @return the Fraction currently held by this class
+     */
 	public Fraction getFraction(){
 		return this.f;
 	}
 	
+	/**
+     * method will decode string passed as a parameter and will call appropriate method according
+     * to the string value and  will pass Fraction f as a parameter to that function
+     * @param f represents a Fraction witch will be used to perform calculation on this object
+     * @param s represents a String witch holds information about an operation to be performed
+     */
 	public void operation(Fraction f, String s){
 		switch (s){
 			case "+": this.f = (this.f).add(f);
