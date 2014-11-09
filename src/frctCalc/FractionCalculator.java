@@ -16,12 +16,14 @@ import java.util.regex.Pattern;
 public class FractionCalculator {
 	
 	private Fraction f;  //  current state of the calculator
+	private Fraction some;   // for exception purposes I otherwise was not able to overcome
 	private String ope;  //  last remembered operation
 	boolean quit;  // exit the program control
 	
 	public FractionCalculator(){
 		
 		f = new Fraction(0,1);
+		some = new Fraction(1,1);
 		ope=null;
 		quit=false;
 	}
@@ -81,10 +83,10 @@ public class FractionCalculator {
 				this.setOperation(s);
 			} else if(s.matches(regAbs)){  // absolute value 
 				System.out.println("requested  ABS ");
-				this.f = this.f.absValue();
+				this.f = this.f.absValue(some);
 			}else if(s.matches(regNegate)){  // negate the value
 				System.out.println("requested  Negate ");
-				this.f = this.f.negate();
+				this.f = this.f.negate(some);
 			}else if(s.matches(regFraction)){  // fraction
 				System.out.println("found  Fraction:   " + s);
 				setFraction(s);

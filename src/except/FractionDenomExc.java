@@ -17,5 +17,4 @@ public class FractionDenomExc extends Exception {
 		super(s);
 		msg=s;
 	}
-	
 } 

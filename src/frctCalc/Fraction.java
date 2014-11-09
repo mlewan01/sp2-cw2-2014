@@ -1,4 +1,8 @@
 package frctCalc;
+
+
+import except.FractionDenomExc;
+
 /**
  * Created by keith for the second coursework assignment.
  * Copy rights Mariusz Lewandowski
@@ -6,7 +10,9 @@ package frctCalc;
  * @author: mlwan01 <Mariusz Lewandowski, Student ref: 12906023>
  * class: sp2-2014, cw2
  */
+
 public class Fraction {
+	
     private int numerator;
     private int denominator;
     
@@ -15,7 +21,7 @@ public class Fraction {
      * @param num represents a numerator in a fraction
      * @param denom represent a denominator in a fraction
      */
-    public Fraction(int num, int denom) {
+    public Fraction(int num, int denom) throws FractionDenomExc{
         if (denom == 0) {
             System.out.println("Invalid fraction with denominator 0"); 
 	    // this should use exceptions
@@ -31,7 +37,7 @@ public class Fraction {
      * constructor with only one parameter where fraction's denominator is equal 1
      * @param num represents a numerator in a fraction
      */
-    public Fraction(int num){
+    public Fraction(int num) throws FractionDenomExc{
     	setNumerator(num);
     	setDenominator(1);
     }
@@ -72,7 +78,10 @@ public class Fraction {
      * method sets class' denominator field with the passed value
      * @param den represent a new value class' field denominator will be updated with
      */
-    public void setDenominator(int den) {
+    public void setDenominator(int den) throws FractionDenomExc {
+    	if(den == 0){
+    		throw new FractionDenomExc("Fraction objects cannot have denominator = 0");
+    	}
         denominator = den;
     }
 
@@ -114,28 +123,46 @@ public class Fraction {
 
         int num = this.getNumerator() * other.getNumerator();
         int denom = this.getDenominator() * other.getDenominator();
-        return new Fraction(num, denom);
+        try{
+        	other = new Fraction(num, denom);
+        }catch (FractionDenomExc e){
+        	System.out.println("exception in method multiplication, class Fraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
+        }
+        return other;
     }
     
     /**
      * method will negate value of this object and return it as a new object of class Fraction
      * @return new object Fraction with the value equal -(this Fraction)
      */
-    public Fraction negate(){
+    public Fraction negate(Fraction some){
     	int tn = this.getNumerator()*(-1);
     	int td = this.getDenominator();
-    	return new Fraction(tn, td);
+    	try{
+    		some = new Fraction(tn, td);
+    	}catch (FractionDenomExc e){
+        	System.out.println("exception in method multiplication, class Fraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
+        }
+    	return some;
     }
     /**
      * method will absolute value the value of this object and return it as a new object of class Fraction
      * @return new object of class Fraction with value equal to absolute value of this Fraction
      */
-    public Fraction absValue(){
+    public Fraction absValue(Fraction some){
     	int tn = this.getNumerator();
     	int td = this.getDenominator();
     	if(tn<0) tn=tn*(-1);
     	if(td<0) td= td*(-1);
-    	return new Fraction(tn, td);
+    	try{
+    		some = new Fraction(tn, td);
+    	}catch (FractionDenomExc e){
+        	System.out.println("exception in method multiplication, class Fraction");
+        	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
+        }
+    	return some;
     }
     
     /**
