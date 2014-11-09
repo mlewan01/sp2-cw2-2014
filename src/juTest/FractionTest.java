@@ -6,6 +6,11 @@ import frctCalc.Fraction;
  * Created by keith for the second coursework assignment.
  *
  * All the tests should be (re-)written using JUnit
+ *
+ * Copy rights Mariusz Lewandowski
+ * http://www.artemlux.com
+ * @author: mlwan01 <Mariusz Lewandowski, Student ref: 12906023>
+ * class: sp2-2014, cw2
  */
 public class FractionTest {
     public static void main(String[] args) {

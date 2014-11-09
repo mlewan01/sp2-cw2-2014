@@ -8,9 +8,10 @@ import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 /**
- * @author: mlewan01 <Mariusz Lewandowski, Student ref: 12906023>
- * class: sp2-2014
- *
+ * Copy rights Mariusz Lewandowski
+ * http://www.artemlux.com
+ * @author: mlwan01 <Mariusz Lewandowski, Student ref: 12906023>
+ * class: sp2-2014, cw2
  */
 public class FractionCalculator {
 	
@@ -72,7 +73,7 @@ public class FractionCalculator {
 				System.out.println("requested  Clear ");
 				this.f = new Fraction(0,1);
 			} else if(s.matches(regOperation)){  // operation
-				System.out.println("found Operation ");
+				System.out.println("found Operation:  " + s);
 				this.setOperation(s);
 			} else if(s.matches(regAbs)){  // absolute value 
 				System.out.println("requested  ABS ");
@@ -81,16 +82,16 @@ public class FractionCalculator {
 				System.out.println("requested  Negate ");
 				this.f = this.f.negate();
 			}else if(s.matches(regFraction)){  // fraction
-				System.out.println("found  Fraction");
+				System.out.println("found  Fraction:   " + s);
 				setFraction(s);
 			}else if(s.matches(regDigit)){ // single Number
-				System.out.println("found a Digit");
+				System.out.println("found a Digit:    " + s);
 				setNumber(s);
 			}else {
 				System.out.print("found nothing from the regular Expressions:   ");
 				System.out.println(s);
-				
 			}
+			System.out.println("Fraction falue after this alculations is: "+ this.getFraction() + "  operation:  " + this.getOperation());
 		}while(st.hasMoreTokens());
 		
 	}
@@ -108,9 +109,9 @@ public class FractionCalculator {
 		return this.ope;
 	}
 	public void setFraction(String s){
-		
-		int i = Integer.valueOf(s.charAt(0)+"");
-		int j = Integer.valueOf(s.charAt(2)+"");
+		int index = s.indexOf("/");
+		int i = Integer.valueOf(s.substring(0, index));
+		int j = Integer.valueOf(s.substring(index+1, s.length()));
 		Fraction f = new Fraction(i,j);
 		if(this.ope==null){
 			this.f = f;

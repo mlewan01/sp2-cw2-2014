@@ -1,11 +1,20 @@
 package frctCalc;
 /**
  * Created by keith for the second coursework assignment.
+ * Copy rights Mariusz Lewandowski
+ * http://www.artemlux.com
+ * @author: mlwan01 <Mariusz Lewandowski, Student ref: 12906023>
+ * class: sp2-2014, cw2
  */
 public class Fraction {
     private int numerator;
     private int denominator;
-
+    
+    /**
+     * constructor with two parameters
+     * @param num represents a numerator in a fraction
+     * @param denom represent a denominator in a fraction
+     */
     public Fraction(int num, int denom) {
         if (denom == 0) {
             System.out.println("Invalid fraction with denominator 0"); 
@@ -18,33 +27,60 @@ public class Fraction {
         setDenominator(denom / gcd);
     }
     
+    /**
+     * constructor with only one parameter where fraction's denominator is equal 1
+     * @param num represents a numerator in a fraction
+     */
     public Fraction(int num){
     	setNumerator(num);
     	setDenominator(1);
     }
 
+    /**
+     * method returns string representation of the object
+     */
     @Override
     public String toString() {
     	if( denominator == 1) return "" + getNumerator();
         return "" + getNumerator() + '/' + getDenominator();
     }
 
+    /**
+     * method returns Numerator class' field
+     * @return field numerator 
+     */
     public int getNumerator() {
         return numerator;
     }
-
+    /**
+     * method sets the class field numerator with the passed value
+     * @param num represent a new value of the class' field numerator
+     */
     public void setNumerator(int num) {
         numerator = num;
     }
 
+    /**
+     * method returns class' field denominator
+     * @return class' field denominator
+     */
     public int getDenominator() {
         return denominator;
     }
 
-    public void setDenominator(int num) {
-        denominator = num;
+    /**
+     * method sets class' denominator field with the passed value
+     * @param den represent a new value class' field denominator will be updated with
+     */
+    public void setDenominator(int den) {
+        denominator = den;
     }
 
+    /**
+     * desc:
+     * @param some int i
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,6 +94,11 @@ public class Fraction {
         return true;
     }
 
+    /**
+     * desc:
+     * @param some int i
+     * @return
+     */
     @Override
     public int hashCode() {
         int result = numerator;
