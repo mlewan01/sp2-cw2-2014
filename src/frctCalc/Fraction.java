@@ -23,14 +23,13 @@ public class Fraction {
      */
     public Fraction(int num, int denom) throws FractionDenominatorException{
         if (denom == 0) {
-            System.out.println("Invalid fraction with denominator 0"); 
-	    // this should use exceptions
+            setDenominator(0);
             return;
+        }else{
+	        int gcd = myGcd(num, denom);
+	        setNumerator(num / gcd);
+	        setDenominator(denom / gcd);
         }
-        int gcd = myGcd(num, denom);
-        //System.out.println("CONSTRUCTOR GCDfunction: " + gcd);
-        setNumerator(num / gcd);
-        setDenominator(denom / gcd);
     }
     
     /**
@@ -80,7 +79,7 @@ public class Fraction {
      */
     public void setDenominator(int den) throws FractionDenominatorException {
     	if(den == 0){
-    		throw new FractionDenominatorException("Fraction objects cannot have denominator = 0");
+    		throw new FractionDenominatorException("Error. Fraction objects cannot have denominator = 0");
     	}
         denominator = den;
     }
