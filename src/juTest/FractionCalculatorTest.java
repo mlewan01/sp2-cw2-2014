@@ -64,6 +64,28 @@ public class FractionCalculatorTest {
 			System.out.println(e.getMessage());
 		}catch(NumberFormatException e2){
 			System.out.println(e2.getMessage());
+			e2.printStackTrace();
+			System.out.println(fc.getFraction().toString());
 		}
+	}
+	@Test
+	public void testSetNumber(){
+		try{
+			fc.setNumber("2341111111111111111111111111111111111111111111111");
+		}catch(NumberFormatException e){
+			System.out.println("nr probably too big");
+			System.out.println(e.getMessage());
+		}
+	}
+	@Test
+	public void testOperation(){
+		System.out.println("testOperation:   " +fc.getFraction());
+		try{
+			fc.operation(new Fraction(1,2), "+");
+			System.out.println("testOperation:   " +fc.getFraction());
+		}catch(FractionDenominatorException e){
+			System.out.println(e.getMessage());
+		}
+		
 	}
 }

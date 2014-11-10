@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
+import except.FractionCalculatorQuitException;
 import except.FractionDenominatorException;
 import except.FractionOperationRepeat;
 
@@ -25,7 +26,7 @@ public class FractionCalculator {
 	
 	public FractionCalculator(){
 		try{
-			f = new Fraction(0,1);
+			f = new Fraction(1,1);
 		}catch (FractionDenominatorException e){
         	System.out.println("exception in method negate, class FractionCalculator");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
@@ -102,9 +103,13 @@ public class FractionCalculator {
 				break;
 			}
 			if( s.matches(regQuit)){   // quit
-				System.out.println("found quit request");
-				quit=true;
-				break;
+				try{
+					quit("user must have choosen to exit the program");
+				}catch(FractionCalculatorQuitException e){
+					System.out.println(e.getMessage());
+					quit=true;
+					break;
+				}
 			} else if(s.matches(regClear)){  // clear
 				this.clear();
 			} else if(s.matches(regOperation)){  // operation
@@ -242,5 +247,8 @@ public class FractionCalculator {
         	System.out.println("exception in method negate, class Fraction");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
 		}
+	}
+	public void quit(String s)throws FractionCalculatorQuitException{
+		throw new FractionCalculatorQuitException(s);
 	}
 }
