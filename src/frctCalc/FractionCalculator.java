@@ -248,6 +248,10 @@ public class FractionCalculator {
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
 		}
 	}
+	/**
+     * method will throw a exit exception
+     * @param s variable transporting an exit related message
+     */
 	public void quit(String s)throws FractionCalculatorQuitException{
 		throw new FractionCalculatorQuitException(s);
 	}
