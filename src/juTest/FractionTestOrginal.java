@@ -17,7 +17,7 @@ public class FractionTestOrginal {
     public static void main(String[] args) {
     	try{
 		        // test divide by zero - should print an error and exit
-		        new Fraction(1, 0);
+	        new Fraction(1, 0);
 		        // test multiply
 			Fraction f = new Fraction(3,10);
 			Fraction g = new Fraction(1,2);

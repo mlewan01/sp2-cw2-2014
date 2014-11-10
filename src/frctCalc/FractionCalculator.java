@@ -20,14 +20,12 @@ import except.FractionOperationRepeat;
 public class FractionCalculator {
 	
 	private Fraction f;  //  current state of the calculator
-	private Fraction some;   // for exception purposes I otherwise was not able to overcome
 	private String ope;  //  last remembered operation
 	boolean quit;  // exit the program control
 	
 	public FractionCalculator(){
 		try{
 			f = new Fraction(0,1);
-			some = new Fraction(1,1);
 		}catch (FractionDenominatorException e){
         	System.out.println("exception in method negate, class FractionCalculator");
         	System.out.println("it is impossible for this exception to occur in this method so will ignore it");
@@ -64,7 +62,7 @@ public class FractionCalculator {
 			        	continue;
 					}
 					System.out.println("----------------------------------------");
-					System.out.println("Fraction falue after this calculations is: "+ fc.getFraction() + "  operation:  " + fc.getOperation());
+					System.out.println("Fraction value after this calculations is: "+ fc.getFraction() + "  operation:  " + fc.getOperation());
 					System.out.println("----------------------------------------");
 				}while(!fc.quit);
 				
@@ -133,7 +131,7 @@ public class FractionCalculator {
 				System.out.println(s);
 				clear();
 			}
-			System.out.println("Fraction falue after decoded element is: "+ this.getFraction() + "  operation:  " + this.getOperation());
+			System.out.println("Fraction value after this decoded element is: "+ this.getFraction() + "  operation:  " + this.getOperation());
 		}while(st.hasMoreTokens());
 		
 	}
@@ -144,7 +142,6 @@ public class FractionCalculator {
      */
 	public void setOperation(String s) throws FractionOperationRepeat{
 		if(this.ope != null) {
-			System.out.println("there was already an operation memorised... " + this.ope);
 			String tmp =this.ope;
 			this.ope = s;
 			throw new FractionOperationRepeat("there was already an operation memorised... " + tmp);
@@ -233,6 +230,9 @@ public class FractionCalculator {
 			default: System.out.println("Fraction Calculator -> operation -> unrecognized operation...");
 		}
 	}
+	/**
+     * method will reset value of the class field Fraction f to (0,1) and will resent value of the field String ope to null
+     */
 	public void clear(){
 		System.out.println("requested to clear calculator's state");
 		this.ope = null;
